@@ -56,6 +56,24 @@ class User(db.Model):
         s = Serializer(current_app.config['SECRET_KEY'], expiration)
         return s.dumps({'id': self.id}).decode('utf-8')
 
+    @classmethod
+    def verify_auth_token(cls, token):
+        """
+        Ensures that the token received from the client exists and returns the
+        User that the token belongs to. Returns None if token doesn't exist.
+        :param token: str
+        :return: User object or None
+        """
+        s = Serializer(current_app.config['SECRET_KEY'])
+        try:
+            data = s.loads(token)
+        except:
+            return None
+        user = User.query.get(data['id'])
+        if user and user.session_token == token:
+            return user
+        return None
+
     # DB Helpers
     @classmethod
     def find_by_identity(cls, identity):

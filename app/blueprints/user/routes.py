@@ -1,10 +1,12 @@
 from flask import Blueprint, jsonify, g, request
 from .models import User, db
+from .authentication import auth
 
 user = Blueprint('user', __name__)
 
 
 @user.route('/users')
+@auth.login_required
 def index():
     users = User.query.all()
     return jsonify({'response': [u.to_json() for u in users]}), 200
