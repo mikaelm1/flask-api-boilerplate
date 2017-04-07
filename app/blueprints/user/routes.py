@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 from .models import User
 
 user = Blueprint('user', __name__)
@@ -6,7 +6,8 @@ user = Blueprint('user', __name__)
 
 @user.route('/users')
 def index():
-    return 'Users index'
+    users = User.query.all()
+    return jsonify({'response': [u.to_json() for u in users]}), 200
 
 
 @user.route('/users/register', methods=['POST'])
