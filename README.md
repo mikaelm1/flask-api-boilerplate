@@ -1,2 +1,26 @@
 # flask-api-boilerplate
-A Flask boilerplate for building a Dockerized api
+A Flask boilerplate for building a Dockerized API
+
+## Prerequisites
+
+Need to have [Docker](https://docs.docker.com/engine/installation/) installed.
+
+## Getting Started
+1. Clone or download the repo
+2. Open `Dockerfile` and change `MAINTAINER` to your name and email
+3. Open `docker-compose.yml` and change `flaskboilerplate` to the name of your app
+4. Open `.env` and change `COMPOSE_PROJECT_NAME` to the name of your app, and choose a username and password for Postgresql
+5. Open `setup.py` and change both `name` and `boilerplate` inside `entry_points` to the name of your app.
+6. Open `config/settings.py` and change `SQLALCHEMY_DATABASE_URI` to `postgresql://usernamefrom#4:passwordfrom#4@postgres:5432/usernamefrom#4`. Also change the mail settings to your gmail credentials if you plan on using email in the app.
+7. Run `docker-compose up --build`
+8. Before you can use the app, you need to initialize the tables in the database. The boilerplate comes with a single table, `users`. In order to initialize it, run `docker ps` and get the container id of the running app. Then run `docker exec CONTAINER_ID appname db init`. If everything works you'll see a message saying the tables were droppped and reinitialized. WARNING: Do not run this command in production. This is only to be used during development. In production, if you change your db schemas, run migrations. If the above command gives an error, then you'll need to run `pip install --editable .` and you should only need to run this command once. 
+
+## Security Options
+Storing passwords and other sensitive information in version control is a bad idea. The following are some suggestions of how to secure your source code. 
+1. Put `.env` inside the `.gitignore` file and remove `.env` from version control.
+2. Create an `instance` directory and add `__init__.py` and `settings.py` files inside. All publicly facing settings of your app should go into `config/settings.py` but everything you put in `instance/settings.py` will override those in the `config` directory. For example, instead of putting the db url as instructed in step 6 above in `config/settings.py`, you should put it in `instance/settings.py` and keep a dummy url in `config/settings.py`.   
+
+## Acknowledgements
+This boilerplate is heavily influenced by what I learned from these two sources:
+- [Nick Janetakis's Udemy Course](https://www.udemy.com/the-build-a-saas-app-with-flask-course/learn/v4/overview)
+- [Miguel Grinberg's Book](https://www.amazon.com/Flask-Web-Development-Developing-Applications/dp/1449372627/ref=sr_1_2?ie=UTF8&qid=1491529179&sr=8-2&keywords=flask+book)
