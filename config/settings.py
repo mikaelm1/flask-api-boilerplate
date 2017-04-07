@@ -1,11 +1,11 @@
 # Flask
 SECRET_KEY = 'supersecret'
-SERVER_NAME = 'localhost:8000'
+SERVER_NAME = 'local.docker:8000'
 SQLALCHEMY_RECORD_QUERIES = True
 DEBUG = True
 
 # Database
-SQLALCHEMY_DATABASE_URI = 'postgresql://username:devpassword@postgres:5432/username'
+SQLALCHEMY_DATABASE_URI = 'postgresql://potter:voldemort@postgres:5432/potter'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_RECORD_QUERIES = True
 

@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  chessclans:
+  flaskboilerplate:
     build: .
     command: >
       gunicorn -b 0.0.0.0:8000

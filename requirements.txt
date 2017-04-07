@@ -21,4 +21,3 @@ coverage==4.2.0
 # Extensions
 Flask-Mail==0.9.1
 Flask-Limiter==0.9.3
-Flask-Login==0.4.0
