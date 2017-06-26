@@ -1,6 +1,6 @@
 # Flask
 SECRET_KEY = 'supersecret'
-SERVER_NAME = 'local.docker:8000'
+SERVER_NAME = 'localhost:8000'
 SQLALCHEMY_RECORD_QUERIES = True
 DEBUG = True
 
