@@ -40,11 +40,9 @@ nosetests.xml
 # SQLite databases
 *.sqlite
 
-# Virtual environment
-venv
-
 # Config
 instance/
+.env
 
 # Logs
 *.log
