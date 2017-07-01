@@ -25,7 +25,7 @@ To run the unit tests: `docker exec CONTAINER_ID appname tests`
 To run them with a coverage report: `docker exec CONTAINER_ID appname tests cov`. This will place the coverage reports inside a `tmp` directory. 
 
 ## Blueprints
-You can create and delete blueprints with cli commands. Creating a blueprint will create module with the given name with a `routes.py` and `models.py` files inside. The `routes.py` will have minimal code setup. Deleting a blueprint will delete all of its contents.
+You can create and delete blueprints with cli commands. Creating a blueprint will create the module with the given name inside the `blueprints` directory with `routes.py` and `models.py` files inside. The `routes.py` will have minimal code setup. Deleting a blueprint will delete all of its contents.
 
 - To Create: `docker exec CONTAINER_ID appname cb BLUEPRINTNAME`
 - To Delete: `docker exec CONTAINER_ID appname rb BLUEPRINTNAME`
