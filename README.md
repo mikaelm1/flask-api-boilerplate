@@ -24,6 +24,12 @@ Storing passwords and other sensitive information in version control is a bad id
 To run the unit tests: `docker exec CONTAINER_ID appname tests`
 To run them with a coverage report: `docker exec CONTAINER_ID appname tests cov`. This will place the coverage reports inside a `tmp` directory. 
 
+## Blueprints
+You can create and delete blueprints with cli commands. Creating a blueprint will create module with the given name with a `routes.py` and `models.py` files inside. The `routes.py` will have minimal code setup. Deleting a blueprint will delete all of its contents.
+
+- To Create: `docker exec CONTAINER_ID appname cb BLUEPRINTNAME`
+- To Delete: `docker exec CONTAINER_ID appname rb BLUEPRINTNAME`
+
 ## Acknowledgements
 This boilerplate is heavily influenced by what I learned from these two sources:
 - [Nick Janetakis's Udemy Course](https://www.udemy.com/the-build-a-saas-app-with-flask-course/learn/v4/overview)
