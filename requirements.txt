@@ -5,7 +5,7 @@ gunicorn==19.6.0
 
 # Data 
 Flask-SQLAlchemy==2.1
-alembic==0.8.6
+alembic==0.9.1
 psycopg2==2.6.1
 Faker==0.7.7
 
