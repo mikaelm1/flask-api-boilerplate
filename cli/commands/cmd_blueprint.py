@@ -11,7 +11,7 @@ def cli():
     pass
 
 
-@click.command(name='cb')
+@click.command(name='create')
 @click.argument('name')
 def create_blueprint(name):
     """
@@ -35,7 +35,7 @@ def create_blueprint(name):
         f.write('')
 
 
-@click.command(name='rb')
+@click.command(name='delete')
 @click.argument('name')
 def remove_blueprint(name):
     """
