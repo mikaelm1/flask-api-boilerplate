@@ -1,5 +1,5 @@
 FROM python:3.5-slim
-MAINTAINER Mikael Mukkhsikaroyan <mikaelm3981@gmail.com>
+MAINTAINER FirstName LastName <email@example.com>
 
 RUN apt-get update && apt-get install -qq -y \
   build-essential libpq-dev --no-install-recommends

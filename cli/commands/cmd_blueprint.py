@@ -17,7 +17,7 @@ def create_blueprint(name):
     """
     Creates a new blueprint.
     """
-    print('Creating {}...'.format(name))
+    print('Creating {} Blueprint...'.format(name))
     filename = './app/blueprints/{}/__init__.py'.format(name)
     if os.path.isdir('./app/blueprints/{}'.format(name)):
         print('A blueprint with that name already exists')
@@ -32,7 +32,24 @@ def create_blueprint(name):
                   '{} = Blueprint(\'{}\', __name__)\n'.format(name, name))
         f.write(s_code)
     with open(model, 'w+') as f:
-        f.write('')
+        m_code = ('from datetime import datetime\n'
+                  'from app import db\n\n\n'
+                  'class {}(db.Model):\n'
+                  '    __tablename__ = \'{}s\'\n\n'
+                  '    id = db.Column(db.Integer, primary_key=True)\n'
+                  '    created_on = db.Column(db.DateTime, default=datetime.utcnow)\n'
+                  .format(name.title(), name))
+        f.write(m_code)
+    print('Adding test file for {}'.format(name))
+    filename = './app/tests/test_{}s.py'.format(name)
+    if os.path.isdir(filename):
+        print('A test file with that name already exists')
+        return
+    with open(filename, 'w+') as f:
+        t_code = ('from .test_base import BaseTest\n\n\n'
+                  'class {}TestCase(BaseTest):\n'
+                  '    pass\n'.format(name.title()))
+        f.write(t_code)
 
 
 @click.command(name='delete')
@@ -45,6 +62,8 @@ def remove_blueprint(name):
     if click.confirm(msg):
         print('Deleting {} Blueprint...'.format(name))
         shutil.rmtree('./app/blueprints/{}'.format(name))
+    else:
+        print('Canceled delete')
 
 
 cli.add_command(create_blueprint)
