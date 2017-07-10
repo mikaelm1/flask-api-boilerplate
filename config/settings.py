@@ -9,6 +9,8 @@ SQLALCHEMY_DATABASE_URI = 'postgresql://potter:voldemort@postgres:5432/potter'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_RECORD_QUERIES = True
 
+# Logging
+LOG_LEVEL = 'DEBUG'
 
 # Mail
 MAIL_SERVER = 'smtp.googlemail.com'
