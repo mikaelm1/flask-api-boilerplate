@@ -44,6 +44,7 @@ then
     password="voldemort"
 fi
 
+echo "Replacing boilerplate names with your app name..."
 # setup.py
 sed -i "" "s/boilerplate/${app_name}/g" "$curr_dir/setup.py"
 sed -i "" "s/Flask-Boilerplate/${app_name}/g" "$curr_dir/setup.py"
@@ -60,24 +61,25 @@ fi
 sed -i "" "s/flaskboilerplate/${app_name}/g" "$curr_dir/.env"
 sed -i "" "s/potter/${username}/g" "$curr_dir/.env"
 sed -i "" "s/voldemort/${password}/g" "$curr_dir/.env"
+
+echo "Making instance/ directory for storing secure values..."
 # Make instance directory
 mkdir -p instance/
 touch instance/__init__.py
 touch instance/settings.py
-read -d '' config << EOF
-SQLALCHEMY_DATABASE_URI = 'postgresql://$username:$password@postgres:5432/$app_name'
-
-
-# Mail
-MAIL_SERVER = 'smtp.googlemail.com'
-MAIL_PORT = 587
-MAIL_USE_TLS = True
-MAIL_USERNAME = '$email'
-MAIL_PASSWORD = 'supersecret'
-CC_MAIL_SUBJECT_PREFIX = '[$app_name]'
-CC_MAIL_SENDER = '$app_name <$email>'
-EOF
+config="SQLALCHEMY_DATABASE_URI = 'postgresql://$username:$password@postgres:5432/$app_name'\n\n\
+# Mail\n\
+MAIL_SERVER = 'smtp.googlemail.com'\
+MAIL_PORT = 587\n\
+MAIL_USE_TLS = True\n\
+MAIL_USERNAME = '$email'\n\
+MAIL_PASSWORD = 'supersecret'\n\
+CC_MAIL_SUBJECT_PREFIX = '[$app_name]'\n\
+CC_MAIL_SENDER = '$app_name <$email>'\n"
 echo -e $config > instance/settings.py
+
+echo "Installing packaging and removing git remote repository..."
 # Packaging and Git stuff
 pip install --editable .
 git remote rm origin
+echo "Done!"

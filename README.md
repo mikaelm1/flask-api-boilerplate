@@ -6,19 +6,28 @@ A Flask boilerplate for building Dockerized APIs
 Need to have [Docker](https://docs.docker.com/engine/installation/) installed.
 
 ## Getting Started
-1. Clone or download the repo.
-2. Open `Dockerfile` and change `MAINTAINER` to your name and email.
-3. Open `docker-compose.yml` and change `flaskboilerplate` to the name of your app.
-4. Rename `.env-example` to `.env` (make sure git does not track this file).
-5. Open `.env` and change `COMPOSE_PROJECT_NAME` to the name of your app, and choose a username and password for your PostgreSQL database.
-6. Open `setup.py` and change the `name` variable and the word "boilerplate" inside `entry_points` to the name of your app.
-7. Open `config/settings.py` and change `SQLALCHEMY_DATABASE_URI` to `postgresql://usernamefrom#5:passwordfrom#5@postgres:5432/usernamefrom#5`. Also change the mail settings to your gmail credentials if you plan on using email in the app.
-8. Run `docker-compose up --build`
-9. Before you can use the app, you need to initialize the tables in the database. The boilerplate comes with a single table, `users`. In order to initialize it, run `docker ps` and get the container id of the running app. Then run `docker exec [CONTAINER_ID] [APPNAME] db init`. If everything works you'll see a message saying the tables were droppped and reinitialized. **WARNING:** Do not run this command in production. This is only to be used during development. In production, if you change your db schemas, run migrations. If the above command gives an error, you'll need to run `pip install --editable .` and you should only need to run this command once. 
+Clone the repo:
+```
+git clone https://github.com/mikaelm1/flask-api-boilerplate.git
+```
+A bash script will replace all the boilerplate names with the values that you provide. First, you need to make it an executable:
+```
+chmod +x create.sh
+```
+Then run the script:
+```
+./create.sh [APPNAME] [FirstName] [LastName] [EMAIL] [DBUsername] [DBPassword]
+```
+
+Once you're done with this script, you can delete `create.sh`
+
+You can now run the app with Docker:
+```
+docker-compose up --build
+```
 
 ## Security
-Storing passwords and other sensitive information in version control is a bad idea. The following are some suggestions of how to secure your source code. 
-1. Create an `instance` directory and add `__init__.py` and `settings.py` files inside. All publicly facing settings of your app should go into `config/settings.py` but everything you put in `instance/settings.py` will override those in the `config` directory. For example, instead of putting the db url as instructed in step 6 above in `config/settings.py`, you should put it in `instance/settings.py` and keep a dummy url in `config/settings.py`. 
+Storing passwords and other sensitive information in version control is a bad idea. The `create.sh` script creates a directory called `instance`. You should store all sensitive data like databse passwords in `instance/settings.py`. All variables stored here will replace those of the same name found in `config/settings.py`.
 
 ## Running Tests
 To run the unit tests: `docker exec [CONTAINER_ID] [APPNAME] tests`
