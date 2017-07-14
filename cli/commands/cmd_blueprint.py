@@ -28,8 +28,10 @@ def create_blueprint(name):
     with open(filename, 'w+') as f:
         f.write('')
     with open(route, 'w+') as f:
-        s_code = ('from flask import Blueprint, jsonify, g, request\n\n\n'
-                  '{} = Blueprint(\'{}\', __name__)\n'.format(name, name))
+        s_code = ('from flask import Blueprint, jsonify, g, request\n'
+                  'from .models import {}\n\n\n'
+                  '{} = Blueprint(\'{}\', __name__)\n'
+                  .format(name.title(), name, name))
         f.write(s_code)
     with open(model, 'w+') as f:
         m_code = ('from datetime import datetime\n'
@@ -40,7 +42,7 @@ def create_blueprint(name):
                   '    created_on = db.Column(db.DateTime, default=datetime.utcnow)\n'
                   .format(name.title(), name))
         f.write(m_code)
-    print('Adding test file for {}'.format(name))
+    print('Adding test file for {}...'.format(name))
     filename = './app/tests/test_{}s.py'.format(name)
     if os.path.isdir(filename):
         print('A test file with that name already exists')
