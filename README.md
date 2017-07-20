@@ -60,5 +60,5 @@ current_app.logger.error('Your message here')
 
 ## Acknowledgements
 This boilerplate is heavily influenced by what I learned from these two sources:
-- [Nick Janetakis's Udemy Course](https://www.udemy.com/the-build-a-saas-app-with-flask-course/learn/v4/overview)
+- [Nick Janetakis's Udemy Course](https://nickjanetakis.com/courses/build-a-saas-app-with-flask)
 - [Miguel Grinberg's Book](https://www.amazon.com/Flask-Web-Development-Developing-Applications/dp/1449372627/ref=sr_1_2?ie=UTF8&qid=1491529179&sr=8-2&keywords=flask+book)
