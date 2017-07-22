@@ -1,5 +1,5 @@
 # flask-api-boilerplate
-A Flask boilerplate for building Dockerized APIs
+A Flask boilerplate for writing Dockerized APIs. Includes a base Docker and Docker Compose configuration, unit testing framework setup to run with a single command, helper functions for running database migrations, managing Blueprints, sending mobile push notifications, and more. 
 
 ## Prerequisites
 
@@ -58,6 +58,12 @@ notify_user(player_id='the-id-stored-by-onesignal', title='Title', message='Body
 ...
 ```
 The `player_id` is an id that OneSignal creates when the user gives permission on their device to send them notifications. The iOS SDK that OneSignal provides allows you to get the user's id on the client. I would add an `os_player_id` field to the `User` model and save the id to the databse and use it when making the above call. 
+
+In order to use their service, you must register an account with them. OneSignal is a free service and if you're interested, you can read about how they make money [on their about page](https://onesignal.com/about). Once you create an account, you will get a `OneSignal App ID` and a `REST API Key`. You need to add these to `instance/settings.py`:
+```python
+ONE_SIGNAL_KEY = 'REST API Key'
+ONE_SIGNAL_APP_ID = 'One Signal App ID'
+```
 
 ## Logging
 The boilerplate has a logger set up to write logs to `app.log`, which is inside the `logs/` directory. To use the logger:

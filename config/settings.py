@@ -20,3 +20,7 @@ MAIL_USERNAME = 'example@gmail.com'
 MAIL_PASSWORD = 'supersecret'
 CC_MAIL_SUBJECT_PREFIX = '[Flask Boilerplate]'
 CC_MAIL_SENDER = 'Flask Boilerplate <flask@example.com>'
+
+# Mobile Push Notifications
+ONE_SIGNAL_KEY = 'REST API Key'
+ONE_SIGNAL_APP_ID = 'One Signal App ID'
