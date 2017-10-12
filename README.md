@@ -16,7 +16,7 @@ chmod +x create.sh
 ```
 Then run the script:
 ```
-./create.sh [APPNAME] [FirstName] [LastName] [EMAIL] [DBUsername] [DBPassword]
+./create.sh [APPNAME] [FIRST_NAME] [LAST_NAME] [EMAIL] [DB_USERNAME] [DB_PASSWORD]
 ```
 
 Once you're done with this script, you can delete `create.sh`
